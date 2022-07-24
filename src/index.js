@@ -7,6 +7,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import middleware from './middleware';
 import reducer from './reducers';
+import { BrowserRouter } from 'react-router-dom';
 
 export const store = createStore(reducer, middleware);
 
@@ -15,7 +16,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>
 );
 

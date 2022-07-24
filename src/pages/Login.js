@@ -1,11 +1,19 @@
 import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { handleLogin } from '../actions/authedUser';
 
 const Login = ({ dispatch, user, error }) => {
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+    }
+  }, [navigate, user]);
 
   useEffect(() => {
     setErrorMessage(error);

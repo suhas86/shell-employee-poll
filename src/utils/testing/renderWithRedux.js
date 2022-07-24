@@ -1,8 +1,13 @@
 import { Provider } from 'react-redux';
 import { render } from '@testing-library/react';
+import { MemoryRouter } from 'react-router';
 
 const renderWithRedux = (ui, { store, ...otherOpts }) => {
-  render(<Provider store={store}>{ui}</Provider>);
+  render(
+    <Provider store={store}>
+      <MemoryRouter>{ui}</MemoryRouter>
+    </Provider>
+  );
 };
 
 export default renderWithRedux;
