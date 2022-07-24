@@ -1,0 +1,13 @@
+.navbar ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  text-decoration: none;
+}
+
+.navbar li {
+  list-style: none;
+  padding: 12px;
+  color: #003865;
+  font-size: 14px;
+}
