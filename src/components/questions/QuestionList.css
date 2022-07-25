@@ -1,0 +1,15 @@
+.question-list {
+  border: 1px solid #003865;
+  width: 800px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.question-list h2 {
+  color: #003865;
+}
+
+.question-list div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}

@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import LoadingBar from 'react-redux-loading-bar';
 import './App.css';
 import ProtectedRoute from './components/protectedRoute/ProtectedRoute';
 import Dashboard from './pages/Dashboard';
@@ -9,42 +10,45 @@ import New from './pages/New';
 
 function App() {
   return (
-    <Routes>
-      <Route path="login" element={<Login />} />
-      <Route
-        path="/"
-        element={
-          <ProtectedRoute>
-            <MainLayout />
-          </ProtectedRoute>
-        }
-      >
+    <>
+      <LoadingBar />
+      <Routes>
+        <Route path="login" element={<Login />} />
         <Route
-          path=""
+          path="/"
           element={
             <ProtectedRoute>
-              <Dashboard />
+              <MainLayout />
             </ProtectedRoute>
           }
-        />
-        <Route
-          path="leaderboard"
-          element={
-            <ProtectedRoute>
-              <Leaderboard />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="new"
-          element={
-            <ProtectedRoute>
-              <New />
-            </ProtectedRoute>
-          }
-        />
-      </Route>
-    </Routes>
+        >
+          <Route
+            path=""
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="leaderboard"
+            element={
+              <ProtectedRoute>
+                <Leaderboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="new"
+            element={
+              <ProtectedRoute>
+                <New />
+              </ProtectedRoute>
+            }
+          />
+        </Route>
+      </Routes>
+    </>
   );
 }
 

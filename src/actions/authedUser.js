@@ -1,3 +1,4 @@
+import { showLoading, hideLoading } from 'react-redux-loading-bar';
 import { _getUsers } from '../utils/api/_DATA';
 export const SET_AUTHED_USER = 'SET_AUTHED_USER';
 export const SET_AUTHED_USER_ERROR = 'SET_AUTHED_USER_ERROR';
@@ -18,6 +19,7 @@ function setAuthedUserError(error) {
 
 export function handleLogin(user) {
   return (dispatch) => {
+    dispatch(showLoading());
     return _getUsers()
       .then((users) => {
         const authedUser = users[user.userId];
@@ -29,13 +31,15 @@ export function handleLogin(user) {
               avatarURL: authedUser.avatarURL,
             })
           );
+          dispatch(hideLoading());
         } else {
-          console.log('Else block');
           dispatch(setAuthedUserError('Incorrect username or password'));
+          dispatch(hideLoading());
         }
       })
       .catch((e) => {
         dispatch(setAuthedUserError('Error logging in'));
+        dispatch(hideLoading());
       });
   };
 }
