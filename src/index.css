@@ -56,3 +56,41 @@ button:hover {
   align-items: center;
   flex-direction: column;
 }
+table {
+  border-collapse: collapse;
+  width: 60%;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  color: #003865;
+}
+
+tr:nth-child(even) {
+  background-color: #c5dff5;
+}
+
+table .user-container {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 8px;
+}
+
+table img {
+  border-radius: 50%;
+  width: 40px;
+}
+
+table h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #003865;
+}
+table span {
+  font-size: 12px;
+  color: #ad620c;
+}
