@@ -7,6 +7,7 @@ import Leaderboard from './pages/Leaderboard';
 import Login from './pages/Login';
 import MainLayout from './pages/MainLayout';
 import New from './pages/New';
+import Poll from './pages/Poll';
 
 function App() {
   return (
@@ -35,6 +36,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Leaderboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/poll/:id"
+            element={
+              <ProtectedRoute>
+                <Poll />
               </ProtectedRoute>
             }
           />

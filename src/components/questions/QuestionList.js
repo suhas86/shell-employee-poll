@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import QuestionItem from './QuestionItem';
 import './QuestionList.css';
 
@@ -7,7 +8,9 @@ const QuestionList = ({ questions, heading }) => {
       <h2>{heading}</h2>
       <div>
         {questions.map((question) => (
-          <QuestionItem key={question} question={question} />
+          <Link to={`poll/${question}`}>
+            <QuestionItem key={question} question={question} />
+          </Link>
         ))}
       </div>
     </div>
