@@ -1,13 +1,7 @@
-import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { handleInitialData } from '../actions/shared';
 import QuestionList from '../components/questions/QuestionList';
 
-const Dashboard = ({ dispatch, newQuestionsIds, answeredQuestionsIds }) => {
-  useEffect(() => {
-    dispatch(handleInitialData());
-  }, [dispatch]);
-
+const Dashboard = ({ newQuestionsIds, answeredQuestionsIds }) => {
   return (
     <div className="container">
       <QuestionList questions={newQuestionsIds} heading="New Questions" />

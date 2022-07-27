@@ -11,21 +11,23 @@ const Leaderboard = ({ users }) => {
             <th>Created</th>
           </tr>
         </thead>
-        {Object.keys(users).map((user) => (
-          <tr>
-            <td>
-              <div className="user-container">
-                <img src={users[user].avatarURL} alt={users[user].name} />
-                <div>
-                  <h3>{users[user].name}</h3>
-                  <span>{user}</span>
+        <tbody>
+          {Object.keys(users).map((user) => (
+            <tr key={user}>
+              <td>
+                <div className="user-container">
+                  <img src={users[user].avatarURL} alt={users[user].name} />
+                  <div>
+                    <h3>{users[user].name}</h3>
+                    <span>{user}</span>
+                  </div>
                 </div>
-              </div>
-            </td>
-            <td>{Object.keys(users[user].answers).length}</td>
-            <td>{users[user].questions.length}</td>
-          </tr>
-        ))}
+              </td>
+              <td>{Object.keys(users[user].answers).length}</td>
+              <td>{users[user].questions.length}</td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
   );
