@@ -10,6 +10,13 @@ function setAuthedUser(user) {
   };
 }
 
+export function resetAuthedUser() {
+  return {
+    type: SET_AUTHED_USER,
+    user: null,
+  };
+}
+
 function setAuthedUserError(error) {
   return {
     type: SET_AUTHED_USER_ERROR,

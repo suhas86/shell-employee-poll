@@ -1,3 +1,9 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 16px;
+}
 .navbar ul {
   display: flex;
   flex-direction: row;
@@ -22,4 +28,16 @@
 
 .navbar .active {
   border-bottom: 1px solid #003865;
+}
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+img {
+  align-self: end;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }

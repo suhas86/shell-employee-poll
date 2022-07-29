@@ -11,11 +11,7 @@ const Dashboard = ({ newQuestionsIds, answeredQuestionsIds }) => {
 };
 const mapStateToProps = ({ authedUser, users, questions }) => ({
   newQuestionsIds: Object.keys(questions)
-    .filter(
-      (question) =>
-        questions[question].author !== authedUser.user.id &&
-        !users[authedUser.user.id].answers[question]
-    )
+    .filter((question) => !users[authedUser.user.id].answers[question])
     .sort((a, b) => questions[b].timestamp - questions[a].timestamp),
   answeredQuestionsIds: users[authedUser.user.id]
     ? Object.keys(users[authedUser.user.id].answers)

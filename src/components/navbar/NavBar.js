@@ -1,7 +1,9 @@
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './NavBar.css';
+import { resetAuthedUser } from '../../actions/authedUser';
 
-const NavBar = () => {
+const NavBar = ({ user, dispatch }) => {
   return (
     <nav className="navbar">
       <ul>
@@ -21,8 +23,20 @@ const NavBar = () => {
           </NavLink>
         </li>
       </ul>
+      <div className="image-wrapper">
+        <img src={user.avatarURL} alt={user.name} />
+        <NavLink
+          to="/"
+          data-testid="new"
+          onClick={() => dispatch(resetAuthedUser())}
+        >
+          Logout
+        </NavLink>
+      </div>
     </nav>
   );
 };
-
-export default NavBar;
+const mapStateToProps = ({ authedUser }) => ({
+  user: authedUser.user,
+});
+export default connect(mapStateToProps)(NavBar);
