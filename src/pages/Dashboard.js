@@ -13,8 +13,8 @@ const mapStateToProps = ({ authedUser, users, questions }) => ({
   newQuestionsIds: Object.keys(questions)
     .filter((question) => !users[authedUser.user.id].answers[question])
     .sort((a, b) => questions[b].timestamp - questions[a].timestamp),
-  answeredQuestionsIds: users[authedUser.user.id]
-    ? Object.keys(users[authedUser.user.id].answers)
-    : [],
+  answeredQuestionsIds: Object.keys(users[authedUser.user.id].answers).sort(
+    (a, b) => questions[b].timestamp - questions[a].timestamp
+  ),
 });
 export default connect(mapStateToProps)(Dashboard);
