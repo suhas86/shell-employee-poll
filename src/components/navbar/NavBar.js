@@ -27,7 +27,7 @@ const NavBar = ({ user, dispatch }) => {
         <img src={user.avatarURL} alt={user.name} />
         <NavLink
           to="/"
-          data-testid="new"
+          data-testid="logout"
           onClick={() => dispatch(resetAuthedUser())}
         >
           Logout
