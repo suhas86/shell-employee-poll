@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { handleLogin } from '../actions/authedUser';
 
 const Login = ({ dispatch, user, error }) => {
@@ -8,12 +8,15 @@ const Login = ({ dispatch, user, error }) => {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from || '/';
 
   useEffect(() => {
     if (user) {
-      navigate('/');
+      navigate(from, { replace: true });
     }
-  }, [navigate, user]);
+  }, [from, navigate, user]);
 
   useEffect(() => {
     setErrorMessage(error);
