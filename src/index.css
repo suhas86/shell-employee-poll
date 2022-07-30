@@ -13,6 +13,9 @@ code {
 a {
   text-decoration: none;
 }
+p {
+  margin: 0;
+}
 input {
   border: 1px solid #003865;
   border-radius: 4px;

@@ -6,3 +6,10 @@
   flex-direction: column;
   margin: 8px;
 }
+.option-card p {
+  margin: 8px;
+}
+.mark {
+  background: #003865;
+  color: #fff;
+}

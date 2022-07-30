@@ -3,7 +3,6 @@ import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import Login from './Login';
 import { store } from '../index';
-import { handleLogin } from '../actions/authedUser';
 import renderWithRedux from '../utils/testing/renderWithRedux';
 
 const mockStore = configureStore([thunk]);
@@ -47,11 +46,9 @@ describe('Login Page', () => {
     ).toBeInTheDocument();
   });
   it('Should show error if login id and password are wrong', async () => {
-    // TODO: fix this test
     const store = mockStore({
       authedUser: { user: null, error: 'Incorrect username or password' },
     });
-    store.dispatch(await handleLogin({ userId: 'test', password: 'test' }));
     renderWithRedux(<Login />, { store });
     expect(screen.getByTestId('error-message')).toBeInTheDocument();
   });

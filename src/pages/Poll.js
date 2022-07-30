@@ -14,12 +14,27 @@ const withRouter = (Component) => {
   return ComponentWithRouterProp;
 };
 
+const calculateNumberOfVotes = (option, question) => {
+  return question[option].votes.length;
+};
+
+const calculatePercentage = (option, question, numberOfUsers) => {
+  const numberOfVotes = calculateNumberOfVotes(option, question);
+  return (numberOfVotes / numberOfUsers) * 100;
+};
+
 const Poll = (props) => {
-  const { id, question, authedUserId } = props;
+  const { id, question, authedUserId, numberOfUsers } = props;
+
   const onPollSelected = (option) => {
     const { dispatch } = props;
     dispatch(handleAnswerQuestion(authedUserId, id, option));
   };
+
+  const optionOneVoted = question.optionOne.votes.includes(authedUserId);
+  const optionTwoVoted = question.optionTwo.votes.includes(authedUserId);
+  const voted = optionOneVoted || optionTwoVoted;
+
   return (
     <div className="container">
       <img src="https://i.pravatar.cc/150?img=1" alt="name" />
@@ -28,12 +43,38 @@ const Poll = (props) => {
         <OptionCard
           onClick={() => onPollSelected('optionOne')}
           option={question.optionOne.text}
+          voted={voted}
+          isMarkAnswer={optionOneVoted}
         />
         <OptionCard
           onClick={() => onPollSelected('optionTwo')}
           option={question.optionTwo.text}
+          voted={voted}
+          isMarkAnswer={optionTwoVoted}
         />
       </div>
+      {voted && (
+        <div className="container">
+          <h4>
+            You voted for option {optionOneVoted ? 'Option One' : 'Option Two'}
+          </h4>
+          <p>
+            People who voted for this option:{' '}
+            {calculateNumberOfVotes(
+              optionOneVoted ? 'optionOne' : 'optionTwo',
+              question
+            )}
+          </p>
+          <p>
+            Vote percentage:{' '}
+            {calculatePercentage(
+              optionOneVoted ? 'optionOne' : 'optionTwo',
+              question,
+              numberOfUsers
+            )}
+          </p>
+        </div>
+      )}
     </div>
   );
 };
@@ -45,6 +86,7 @@ const mapStateToProps = ({ authedUser, questions, users }, props) => {
     id,
     question: questions[id],
     authedUserId: authedUser.user.id,
+    numberOfUsers: Object.keys(users).length,
   };
 };
 

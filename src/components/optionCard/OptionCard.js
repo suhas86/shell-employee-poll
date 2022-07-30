@@ -1,10 +1,10 @@
 import './OptionCard.css';
 
-const OptionCard = ({ option, onClick }) => {
+const OptionCard = ({ option, onClick, voted, isMarkAnswer }) => {
   return (
-    <div className="option-card">
+    <div className={`option-card ${isMarkAnswer ? 'mark' : ''}`}>
       <p>{option}</p>
-      <button onClick={onClick}>Click</button>
+      {!voted && <button onClick={onClick}>Click</button>}
     </div>
   );
 };

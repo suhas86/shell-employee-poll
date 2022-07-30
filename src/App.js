@@ -11,6 +11,7 @@ import New from './pages/New';
 import Poll from './pages/Poll';
 import { useEffect } from 'react';
 import { handleInitialData } from './actions/shared';
+import NotFound from './pages/NotFound';
 
 function App({ dispatch }) {
   useEffect(() => {
@@ -20,6 +21,7 @@ function App({ dispatch }) {
     <>
       <LoadingBar />
       <Routes>
+        <Route path="*" element={<NotFound />} />
         <Route path="login" element={<Login />} />
         <Route
           path="/"
