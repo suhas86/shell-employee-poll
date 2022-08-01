@@ -29,7 +29,9 @@ const New = ({ dispatch }) => {
           <input
             id="optionOne"
             name="optionOne"
+            data-testid="optionOne"
             type="text"
+            value={optionOne}
             onChange={handleOnChange}
           />
         </label>
@@ -38,11 +40,15 @@ const New = ({ dispatch }) => {
           <input
             id="optionTwo"
             name="optionTwo"
+            data-testid="optionTwo"
             type="text"
+            value={optionTwo}
             onChange={handleOnChange}
           />
         </label>
-        <button disabled={!optionOne || !optionTwo}>Submit</button>
+        <button data-testid="submit" disabled={!optionOne || !optionTwo}>
+          Submit
+        </button>
       </form>
     </div>
   );

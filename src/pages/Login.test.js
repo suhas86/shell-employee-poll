@@ -9,10 +9,8 @@ const mockStore = configureStore([thunk]);
 
 describe('Login Page', () => {
   it('renders without crashing', () => {
-    renderWithRedux(<Login />, { store });
-    expect(
-      screen.getByText('Enter your login id and password')
-    ).toBeInTheDocument();
+    const view = renderWithRedux(<Login />, { store });
+    expect(view).toMatchSnapshot();
   });
 
   it('Should show error if login id and password are empty', () => {

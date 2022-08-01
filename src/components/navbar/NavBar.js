@@ -18,15 +18,16 @@ const NavBar = ({ user, dispatch }) => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="new" data-testid="new">
+          <NavLink to="add" data-testid="new">
             New
           </NavLink>
         </li>
       </ul>
       <div className="image-wrapper">
+        {user.name}
         <img src={user.avatarURL} alt={user.name} />
         <NavLink
-          to="/"
+          to="/logout"
           data-testid="logout"
           onClick={() => dispatch(resetAuthedUser())}
         >

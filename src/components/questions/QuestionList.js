@@ -8,7 +8,7 @@ const QuestionList = ({ questions, heading }) => {
       <h2>{heading}</h2>
       <div>
         {questions.map((question) => (
-          <Link key={question} to={`poll/${question}`}>
+          <Link key={question} to={`questions/${question}`}>
             <QuestionItem question={question} />
           </Link>
         ))}

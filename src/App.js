@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import LoadingBar from 'react-redux-loading-bar';
 import { connect } from 'react-redux';
 import './App.css';
@@ -8,7 +8,7 @@ import Leaderboard from './pages/Leaderboard';
 import Login from './pages/Login';
 import MainLayout from './pages/MainLayout';
 import New from './pages/New';
-import Poll from './pages/Poll';
+import Question from './pages/Question';
 import { useEffect } from 'react';
 import { handleInitialData } from './actions/shared';
 import NotFound from './pages/NotFound';
@@ -48,21 +48,22 @@ function App({ dispatch }) {
             }
           />
           <Route
-            path="/poll/:id"
+            path="/questions/:id"
             element={
               <ProtectedRoute>
-                <Poll />
+                <Question />
               </ProtectedRoute>
             }
           />
           <Route
-            path="new"
+            path="add"
             element={
               <ProtectedRoute>
                 <New />
               </ProtectedRoute>
             }
           />
+          <Route path="logout" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>
     </>

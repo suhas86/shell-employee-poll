@@ -1,5 +1,10 @@
 import { connect } from 'react-redux';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import {
+  Navigate,
+  useLocation,
+  useNavigate,
+  useParams,
+} from 'react-router-dom';
 import { handleAnswerQuestion } from '../actions/questions';
 import OptionCard from '../components/optionCard/OptionCard';
 
@@ -23,10 +28,12 @@ const calculatePercentage = (option, question, numberOfUsers) => {
   return (numberOfVotes / numberOfUsers) * 100;
 };
 
-const Poll = (props) => {
+const Question = (props) => {
   const { id, question, authedUserId, numberOfUsers } = props;
-
-  const onPollSelected = (option) => {
+  if (!question) {
+    return <Navigate to="/404" />;
+  }
+  const onQuestionSelected = (option) => {
     const { dispatch } = props;
     dispatch(handleAnswerQuestion(authedUserId, id, option));
   };
@@ -41,13 +48,13 @@ const Poll = (props) => {
       <h1>{question.author} asks would you rather:</h1>
       <div className="flex-row-container">
         <OptionCard
-          onClick={() => onPollSelected('optionOne')}
+          onClick={() => onQuestionSelected('optionOne')}
           option={question.optionOne.text}
           voted={voted}
           isMarkAnswer={optionOneVoted}
         />
         <OptionCard
-          onClick={() => onPollSelected('optionTwo')}
+          onClick={() => onQuestionSelected('optionTwo')}
           option={question.optionTwo.text}
           voted={voted}
           isMarkAnswer={optionTwoVoted}
@@ -90,4 +97,4 @@ const mapStateToProps = ({ authedUser, questions, users }, props) => {
   };
 };
 
-export default withRouter(connect(mapStateToProps)(Poll));
+export default withRouter(connect(mapStateToProps)(Question));
