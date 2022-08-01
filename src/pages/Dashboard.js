@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import QuestionList from '../components/questions/QuestionList';
 
 const Dashboard = ({ newQuestionsIds, answeredQuestionsIds }) => {
-  const [activeTab, setActiveTab] = useState('both');
+  const [activeTab, setActiveTab] = useState('new');
   const getActiveTab = (tab) => {
     switch (activeTab) {
       case 'new':
@@ -26,9 +26,9 @@ const Dashboard = ({ newQuestionsIds, answeredQuestionsIds }) => {
       <div>
         Switch View:
         <select onChange={(e) => setActiveTab(e.target.value)}>
-          <option value="both">Both</option>
           <option value="new">New Questions</option>
           <option value="done">Done</option>
+          <option value="both">Both</option>
         </select>
       </div>
       {getActiveTab(activeTab)}
