@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { handleAddQuestion } from '../actions/questions';
 
 const New = ({ dispatch }) => {
   const [optionOne, setOptionOne] = useState('');
   const [optionTwo, setOptionTwo] = useState('');
+  const navigate = useNavigate();
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -17,8 +19,7 @@ const New = ({ dispatch }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     dispatch(handleAddQuestion(optionOne, optionTwo));
-    setOptionOne('');
-    setOptionTwo('');
+    navigate('/');
   };
   return (
     <div className="container">

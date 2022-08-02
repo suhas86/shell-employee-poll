@@ -65,21 +65,30 @@ const Question = (props) => {
           <h4>
             You voted for option {optionOneVoted ? 'Option One' : 'Option Two'}
           </h4>
-          <p>
-            People who voted for this option:{' '}
-            {calculateNumberOfVotes(
-              optionOneVoted ? 'optionOne' : 'optionTwo',
-              question
-            )}
-          </p>
-          <p>
-            Vote percentage:{' '}
-            {calculatePercentage(
-              optionOneVoted ? 'optionOne' : 'optionTwo',
-              question,
-              numberOfUsers
-            )}
-          </p>
+          <div className="flex-row-container">
+            <div>
+              <h5>Option one vote results</h5>
+              <p>
+                People who voted for option one:{' '}
+                {calculateNumberOfVotes('optionOne', question)}
+              </p>
+              <p>
+                Vote percentage:{' '}
+                {calculatePercentage('optionOne', question, numberOfUsers)}
+              </p>
+            </div>
+            <div>
+              <h5>Option two vote results</h5>
+              <p>
+                People who voted for option two:{' '}
+                {calculateNumberOfVotes('optionTwo', question)}
+              </p>
+              <p>
+                Vote percentage:{' '}
+                {calculatePercentage('optionTwo', question, numberOfUsers)}
+              </p>
+            </div>
+          </div>
         </div>
       )}
     </div>
